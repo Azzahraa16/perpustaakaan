@@ -11,12 +11,6 @@ class BukuController extends Controller
 {
      public function index(Request $request)
      {
-         if($request->has('search')){
-             $buku = Buku::where('judul_buku','like','%'.$request->search.'%')->paginate(6);
-         }
-         else{
-             $buku = Buku::paginate(6);
-         }
          $buku = Buku::get();
     return view('buku.index',compact('buku'));
      }

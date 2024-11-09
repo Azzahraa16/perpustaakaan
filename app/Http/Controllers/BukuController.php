@@ -42,7 +42,6 @@ return view('buku.create', ['buku' => $buku]);
 public function edit($id)
 {
     $buku = DB::table('table_buku')->where('id_buku',$id)->get();
-	// passing data pegawai yang didapat ke view edit.blade.php
 	return view('buku.edit',['buku' => $buku]);
 }
 

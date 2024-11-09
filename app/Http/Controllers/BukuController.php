@@ -54,7 +54,6 @@ public function update(Request $request)
         'penerbit' => $request->penerbit,
         'ringkasan' => $request->ringkasan
 	]);
-	// alihkan halaman ke halaman pegawai
 	return redirect()->route('buku');
 
 }
@@ -62,21 +61,17 @@ public function delete($id)
 {
     DB::table('table_buku')->where('id_buku',$id)->delete();
 
-	// alihkan halaman ke halaman pegawai
 	return redirect('/buku');
 }
 public function cari(Request $request)
 	{
-		// menangkap data pencarian
 		$cari = $request->cari;
 
-    		// mengambil data dari table pegawai sesuai pencarian data
 		$buku = DB::table('table_buku')
 		->where('judul_buku','like',"%".$cari."%")
 		->orwhere('penulis','like',"%".$cari."%")
 		->paginate();
 
-    		// mengirim data buku ke view index
 		return view('buku.index',['buku' => $buku]);
 	}
 }
